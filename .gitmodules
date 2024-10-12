@@ -1,0 +1,3 @@
+[submodule "Docker-Frontend"]
+	path = Docker-Frontend
+	url = https://github.com/Larxnarken/Docker-Frontend.git
