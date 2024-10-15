@@ -1,4 +1,4 @@
-package mongoapi
+package repository
 
 import (
 	"context"
@@ -9,10 +9,9 @@ import (
 )
 
 type Card struct {
-	CardId string `bson:"card_id"`
-	Front  string `bson:"front"`
-	Back   string `bson:"back"`
-	Any    any    `bson:"any"`
+	CardId string `json:"card_id" bson:"card_id"`
+	Front  string `json:"front" bson:"front"`
+	Back   string `json:"back" bson:"back"`
 }
 
 type CardRepo struct {
@@ -72,7 +71,7 @@ func (r *CardRepo) UpdateCardByID(cId string, newCard *Card) (int64, error) {
 	return result.ModifiedCount, nil
 }
 
-func (r *CardRepo) DeleteEmployeeByID(cId string) (int64, error) {
+func (r *CardRepo) DeleteCardByID(cId string) (int64, error) {
 	result, err := r.MongoCollection.DeleteOne(context.Background(),
 		bson.D{{Key: "card_id", Value: cId}})
 

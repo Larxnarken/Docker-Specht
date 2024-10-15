@@ -11,14 +11,3 @@ services:
       - "127.0.0.1:27017:27017"
     volumes:
       - ./DBZeug/mongo:/data/db
-
-  mariadb:
-    image: mariadb:10.4
-    container_name: mariadb
-    environment:
-      MYSQL_ROOT_PASSWORD: mypass
-
-    ports:
-      - "127.0.0.2:3306:3306"
-    volumes:
-      - ./DBZeug/maria:/data/db
