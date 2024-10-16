@@ -21,7 +21,7 @@ type Response struct {
 }
 
 func (svg *CardService) CreateCard(w http.ResponseWriter, r *http.Request) {
-	enableCors(&w)
+	EnableCors(&w)
 	w.Header().Add("Content-Type", "application/json")
 
 	res := &Response{}
@@ -56,7 +56,7 @@ func (svg *CardService) CreateCard(w http.ResponseWriter, r *http.Request) {
 	log.Println("Card inserted with id", insertID, card)
 }
 func (svg *CardService) GetCardByID(w http.ResponseWriter, r *http.Request) {
-	enableCors(&w)
+	EnableCors(&w)
 	w.Header().Add("Content-Type", "application/json")
 
 	res := &Response{}
@@ -81,7 +81,7 @@ func (svg *CardService) GetCardByID(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 func (svg *CardService) GetAllCard(w http.ResponseWriter, r *http.Request) {
-	enableCors(&w)
+	EnableCors(&w)
 	w.Header().Add("Content-Type", "application/json")
 
 	res := &Response{}
@@ -102,7 +102,7 @@ func (svg *CardService) GetAllCard(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 func (svg *CardService) UpdateCardByID(w http.ResponseWriter, r *http.Request) {
-	enableCors(&w)
+	EnableCors(&w)
 
 	w.Header().Add("Content-Type", "application/json")
 
@@ -145,7 +145,7 @@ func (svg *CardService) UpdateCardByID(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 func (svg *CardService) DeleteCardByID(w http.ResponseWriter, r *http.Request) {
-	enableCors(&w)
+	EnableCors(&w)
 	w.Header().Add("Content-Type", "application/json")
 
 	res := &Response{}
@@ -169,7 +169,7 @@ func (svg *CardService) DeleteCardByID(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 func (svg *CardService) DeleteAllCard(w http.ResponseWriter, r *http.Request) {
-	enableCors(&w)
+	EnableCors(&w)
 	w.Header().Add("Content-Type", "application/json")
 
 	res := &Response{}
@@ -189,6 +189,8 @@ func (svg *CardService) DeleteAllCard(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
-func enableCors(w *http.ResponseWriter) {
-	(*w).Header().Set("Access-Control-Allow-Origin", "http://localhost:4200/")
+func EnableCors(w *http.ResponseWriter) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+	(*w).Header().Set("Access-Control-Allow-Headers", "*")
+	(*w).Header().Set("Access-Control-Allow-Methods", "POST,GET,OPTION,PUT,DELETE")
 }

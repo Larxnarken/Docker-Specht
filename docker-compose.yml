@@ -12,8 +12,21 @@ services:
       - "127.0.0.1:27017:27017"
     volumes:
       - ./DBZeug/mongo:/data/db
+
   backend:
+    depends_on:
+      - mongodb
     container_name: backend
-    build: .
+    build: 
+      context: .
+      dockerfile: ./dockerfile.backend
     ports:
     - "4444:4444"
+
+  frontend:
+    container_name: frontend
+    build: 
+      context: .
+      dockerfile: ./dockerfile.frontend
+    ports:
+    - "4200:4200"

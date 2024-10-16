@@ -64,12 +64,20 @@ func main() {
 	r.HandleFunc("/card/{id}", CardService.DeleteCardByID).Methods(http.MethodDelete)
 	r.HandleFunc("/card", CardService.DeleteAllCard).Methods(http.MethodDelete)
 
+	r.HandleFunc("/card", VerifyAngular).Methods(http.MethodOptions)
+
 	log.Println("service running on 4444")
 	http.ListenAndServe(":4444", r)
 
 }
 
 func healthHandler(w http.ResponseWriter, r *http.Request) {
+	usecase.EnableCors(&w)
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("running..."))
+}
+
+func VerifyAngular(w http.ResponseWriter, r *http.Request) {
+	usecase.EnableCors(&w)
+	w.WriteHeader(http.StatusOK)
 }
