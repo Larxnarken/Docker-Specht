@@ -66,6 +66,8 @@ func main() {
 
 	r.HandleFunc("/card", VerifyAngular).Methods(http.MethodOptions)
 
+	r.HandleFunc("/card/{id}", VerifyAngular).Methods(http.MethodOptions)
+
 	log.Println("service running on 4444")
 	http.ListenAndServe(":4444", r)
 
